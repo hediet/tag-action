@@ -51,7 +51,7 @@ function run() {
             const tagRef = `refs/tags/${gitTag}`;
             const existingRefs = yield gh.git.listMatchingRefs(Object.assign(Object.assign({}, github.context.repo), { ref: `tags/${gitTag}` }));
             core.debug(`Existing refs: ${JSON.stringify(existingRefs)}`);
-            const exists = existingRefs.data.some(d => d.ref === `tags/${gitTag}`);
+            const exists = existingRefs.data.some(d => d.ref === `refs/tags/${gitTag}`);
             if (exists && failIfExists) {
                 throw new Error(`Tag "${gitTag}" exists, but it should not! (fail_if_exists is set)`);
             }

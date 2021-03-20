@@ -22,7 +22,9 @@ async function run(): Promise<void> {
 
 		core.debug(`Existing refs: ${JSON.stringify(existingRefs)}`);
 
-		const exists = existingRefs.data.some(d => d.ref === `tags/${gitTag}`);
+		const exists = existingRefs.data.some(
+			d => d.ref === `refs/tags/${gitTag}`
+		);
 
 		if (exists && failIfExists) {
 			throw new Error(
